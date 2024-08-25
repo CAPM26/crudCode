@@ -1,3 +1,16 @@
+<?php
+$idNombre = $datos[0]['idTb_Alumnos'];
+$nombre = $datos[0]['nombreTb_Alumnos'];
+$email = $datos[0]['emailTb_Alumnos'];
+$direccion = $datos[0]['direccionTb_Alumnos'];
+$telefono = $datos[0]['telefonoTb_Alumnos'];
+$usuario = $datos[0]['usuarioTb_Alumnos'];
+
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 
@@ -18,20 +31,33 @@
         <h1>Crud con CodeIgniter4</h1>
         <div class="row">
             <div class="col-sm-12">
-                <form method="POST" action="<?php echo base_url() . '/actualizar' ?>"></form>
-                <input type="text" name="idTb_Alumnos" id="idTb_Alumnos" hidden="">
-                <label for="nombre">Nombre</label>
-                <input type="text" name="nombre" id="nombre" class="form-control">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control">
-                <label for="direccion">Direccion</label>
-                <input type="text" name="direccion" id="direccion" class="form-control">
-                <label for="telefono">Telefono</label>
-                <input type="number" name="telefono" id="telefono" class="form-control">
-                <label for="usuario">Usuario</label>
-                <input type="text" name="usuario" id="usuario" class="form-control">
-                <br>
-                <button class="btn btn-warning">Guardar</button>
+                <form method="POST" action="<?php echo base_url() . '/actualizar' ?>">
+                    <input type="text" name="idTb_Alumnos" id="idTb_Alumnos" hidden=""
+                        value="<?php echo $idNombre ?>">
+
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control"
+                        value="<?php echo $nombre ?>">
+
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" class="form-control"
+                        value="<?php echo $email ?>">
+
+                    <label for="direccion">Direccion</label>
+                    <input type="text" name="direccion" id="direccion" class="form-control"
+                        value="<?php echo $direccion ?>">
+
+                    <label for="telefono">Telefono</label>
+                    <input type="number" name="telefono" id="telefono" class="form-control"
+                        value="<?php echo $telefono ?>">
+
+                    <label for="usuario">Usuario</label>
+                    <input type="text" name="usuario" id="usuario" class="form-control"
+                        value="<?php echo $usuario ?>">
+
+                    <br>
+                    <button class="btn btn-warning">Guardar</button>
+                </form>
             </div>
         </div>
     </div>

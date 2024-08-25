@@ -15,7 +15,8 @@ class Crud extends BaseController
         $mensaje = session('mensaje');
 
         $data = [
-            "datos" => $datos
+            "datos" => $datos,
+            "mensaje" => $mensaje
         ];
 
         return view('listado', $data);
@@ -41,9 +42,48 @@ class Crud extends BaseController
         }
     }
 
-    public function actualizar() {}
+    public function actualizar()
+    {
+        $datos = [
+            "nombreTb_Alumnos" => $_POST['nombre'],
+            "emailTb_Alumnos" => $_POST['email'],
+            "direccionTb_Alumnos" => $_POST['direccion'],
+            "telefonoTb_Alumnos" => $_POST['telefono'],
+            "usuarioTb_Alumnos" => $_POST['usuario'],
+        ];
+        $idNombre = $_POST['idTb_Alumnos'];
+        $Crud = new CrudModel();
+        $respuesta = $Crud->actualizar($datos, $idNombre);
+        if ($respuesta) {
+            return redirect()->to(base_url() . '/')->with('mensaje', '2');
+        } else {
+            return redirect()->to(base_url() . '/')->with('mensaje', '3');
+        }
+    }
 
-    public function obtenerNombre($idNombre) {}
+    public function obtenerNombre($idNombre)
+    {
+        $data = ["idTb_Alumnos" => $idNombre];
+        $Crud = new CrudModel();
+        $respuesta = $Crud->obtenerNombre($data);
 
-    public function eliminar($idNombre) {}
+        $datos = ["datos" => $respuesta];
+
+
+        return view('actualizar', $datos);
+    }
+
+    public function eliminar($idNombre)
+    {
+        $Crud = new CrudModel();
+        $data = ["idTb_Alumnos" => $idNombre];
+
+        $respuesta = $Crud->eliminar($data);
+
+        if ($respuesta) {
+            return redirect()->to(base_url() . '/')->with('mensaje', '4');
+        } else {
+            return redirect()->to(base_url() . '/')->with('mensaje', '5');
+        }
+    }
 }

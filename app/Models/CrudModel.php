@@ -19,4 +19,26 @@ class CrudModel extends Model
 
         return $this->db->insertID();
     }
+
+    public function obtenerNombre($data)
+    {
+        $Nombres = $this->db->table('tb_alumnos');
+        $Nombres->where($data);
+        return $Nombres->get()->getResultArray();
+    }
+
+    public function actualizar($data, $idNombre)
+    {
+        $Nombres = $this->db->table('tb_alumnos');
+        $Nombres->set($data);
+        $Nombres->where('idTb_Alumnos', $idNombre);
+        return $Nombres->update();
+    }
+
+    public function eliminar($data)
+    {
+        $Nombres = $this->db->table('tb_alumnos');
+        $Nombres->where($data);
+        return $Nombres->delete();
+    }
 }
